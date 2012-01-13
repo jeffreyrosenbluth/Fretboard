@@ -28,9 +28,6 @@
     int numOfStrings = [fbD numOfStrings];
     float stringSpacing = [fbD stringSpacing];
     CGRect mediaBox = CGRectMake(0, 0, nutOffset + (numOfFrets + 1) * fretSpacing, (numOfStrings + 1) * stringSpacing);
-    /*NSString *homeDirectory = NSHomeDirectory();
-    NSString *destinationFilename = [homeDirectory stringByAppendingPathComponent:@"Desktop/jrid.pdf"];
-    NSURL *url = [NSURL fileURLWithPath:destinationFilename];*/
     CGContextRef pdfContext = CGPDFContextCreateWithURL((__bridge CFURLRef) url, &mediaBox, NULL);
     CGContextBeginPage(pdfContext, &mediaBox);
     CGContextSaveGState(pdfContext);

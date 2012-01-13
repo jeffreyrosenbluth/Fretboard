@@ -10,18 +10,19 @@
 
 @interface FretboardDiagram : NSObject
 
-@property (nonatomic) float stringSpacing;
-@property (nonatomic) float fretSpacing;
-@property (nonatomic) float nutOffset;
-@property (nonatomic) int numOfFrets;
-@property (nonatomic) int numOfStrings;
-@property (nonatomic, strong) NSMutableArray *dots;
+@property float stringSpacing;
+@property float fretSpacing;
+@property float nutOffset;
+@property int numOfFrets;
+@property int numOfStrings;
+@property (strong) NSMutableArray *dots;
 
 - (void)drawHorizontalGrid:(CGContextRef)ctx;
 - (void)drawVericalGrid:(CGContextRef)ctx;
 - (void)drawFingerCircle:(CGContextRef)ctx;
 - (void)drawFretMarkers:(CGContextRef)ctx;
 - (void)drawFretboard:(CGContextRef)ctx;
-
+- (void)getUserInputs;
+- (void)parseUserInputs;
     
 @end

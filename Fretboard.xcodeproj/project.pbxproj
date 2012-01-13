@@ -17,6 +17,7 @@
 		CEC225B414BC9EF800B61D1F /* FretboardPNG.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC225B314BC9EF800B61D1F /* FretboardPNG.m */; };
 		CEC225BB14BDFBB400B61D1F /* FretboardDiagram.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC225BA14BDFBB400B61D1F /* FretboardDiagram.m */; };
 		CEC225BE14BE130E00B61D1F /* FingerDot.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC225BD14BE130E00B61D1F /* FingerDot.m */; };
+		CEC225FC14C0D9F500B61D1F /* teg.icns in Resources */ = {isa = PBXBuildFile; fileRef = CEC225FB14C0D9F500B61D1F /* teg.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		CEC225BA14BDFBB400B61D1F /* FretboardDiagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretboardDiagram.m; sourceTree = "<group>"; };
 		CEC225BC14BE130E00B61D1F /* FingerDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerDot.h; sourceTree = "<group>"; };
 		CEC225BD14BE130E00B61D1F /* FingerDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerDot.m; sourceTree = "<group>"; };
+		CEC225FB14C0D9F500B61D1F /* teg.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = teg.icns; path = ../teg.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				CEC2259514BB6EE600B61D1F /* main.m */,
 				CEC2259714BB6EE600B61D1F /* Fretboard-Prefix.pch */,
 				CEC2259814BB6EE600B61D1F /* Credits.rtf */,
+				CEC225FB14C0D9F500B61D1F /* teg.icns */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				CEC2259414BB6EE600B61D1F /* InfoPlist.strings in Resources */,
 				CEC2259A14BB6EE600B61D1F /* Credits.rtf in Resources */,
 				CEC225A014BB6EE600B61D1F /* MainMenu.xib in Resources */,
+				CEC225FC14C0D9F500B61D1F /* teg.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +325,7 @@
 				CEC225A514BB6EE600B61D1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -15,7 +15,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
     }
     
     return self;
@@ -57,6 +56,8 @@
     CGContextSaveGState(ctx);
     CGContextScaleCTM(ctx, 2.0, 2.0);
     FretboardDiagram *fbD = [[FretboardDiagram alloc] init];
+    [fbD getUserInputs];
+    [fbD parseUserInputs];
     [fbD drawFretboard:ctx];
     CGContextRestoreGState(ctx);
 }
@@ -64,7 +65,7 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     [self drawGuitar];
-   // [super drawRect:dirtyRect];
+    [super drawRect:dirtyRect];
 }
 
 @end

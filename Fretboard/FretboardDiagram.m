@@ -8,8 +8,32 @@
 
 #import "FretboardDiagram.h"
 #import "FingerDot.h"
+#import "AppDelegate.h"
+
+@interface FretboardDiagram () 
+@property (copy) NSString *eString;
+@property (copy) NSString *aString;
+@property (copy) NSString *dString;
+@property (copy) NSString *gString;
+@property (copy) NSString *bString;
+@property (copy) NSString *eeString;
+@property (copy) NSString *title;
+@property int startingFret;
+
+
+@end
+
 
 @implementation FretboardDiagram
+
+@synthesize eeString;
+@synthesize aString;
+@synthesize dString;
+@synthesize gString;
+@synthesize bString;
+@synthesize eString;
+@synthesize title;
+@synthesize startingFret;
 
 @synthesize stringSpacing;
 @synthesize fretSpacing;
@@ -27,31 +51,79 @@
         [self setNutOffset:72.];
         [self setNumOfFrets:16];
         [self setNumOfStrings:6];
-        
         dots = [[NSMutableArray alloc] initWithCapacity:18];
-        FingerDot *dot = [[FingerDot alloc] init];
-        [dot setFret:3];
-        [dot setString:1];
-        [dot setLabel:@"R"];
-        [dot setIsEmphasized:YES];
-        [dots addObject:dot];
-        dot = [[FingerDot alloc] init];
-        [dot setFret:3];
-        [dot setString:3];
-        [dot setLabel:@"2"];
-        [dots addObject:dot];
-        dot = [[FingerDot alloc] init];
-        [dot setFret:5];
-        [dot setString:4];
-        [dot setLabel:@"\u266D7"];
-        [dots addObject:dot];
-        dot = [[FingerDot alloc] init];
-        [dot setFret:7];
-        [dot setString:6];
-        [dot setLabel:@"4"];
-        [dots addObject:dot];
     }
     return self;
+}
+
+- (void)getUserInputs {
+    AppDelegate *delegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+    [self setTitle:[[delegate title] stringValue]];
+    [self setEString:[[delegate eString] stringValue]];
+    [self setAString:[[delegate aString] stringValue]];
+    [self setDString:[[delegate dString] stringValue]];
+    [self setGString:[[delegate gString] stringValue]];
+    [self setBString:[[delegate bString] stringValue]];
+    [self setEeString:[[delegate eeString] stringValue]];
+    [self setStartingFret:[[delegate startingFret] intValue]];
+}
+
+- (void)parseUserInputs {
+    NSArray *neck = [NSArray arrayWithObjects:eString, aString, dString, gString, bString, eeString, nil];
+    NSArray *oneString;
+    NSString *flat;
+    NSString *numLabel = @"1";
+    NSRange second;
+    second.location = 1;
+    second.length = 1;
+    NSRange third;
+    third.location = 2;
+    third.length = 1;
+    BOOL isEmphasized;
+    [dots removeAllObjects];
+    FingerDot *dot;
+    for (int i = 0; i <  numOfStrings; i++) {
+        oneString = [[neck objectAtIndex:i] componentsSeparatedByString:@"/"];
+        int j = 0;
+        for (NSString *s in oneString) {
+            if ([s isEqualToString:@"0"]) {
+                j++;
+                continue;
+            }
+            if ([[s substringToIndex:1] isEqualToString:@"-"]) {
+                flat = @"\u266D";
+                numLabel = [s substringWithRange:second];
+                isEmphasized = ([s length] == 3);
+            }
+            else {
+                flat = @"";
+                numLabel = [s substringToIndex:1];
+                isEmphasized = ([s length] == 2);
+            }
+            dot = [[FingerDot alloc] init];
+            [dot setString:i+1];
+            [dot setFret:startingFret + j];
+            [dot setLabel:[NSString stringWithFormat:@"%@%@",flat,numLabel]];
+            [dot setIsEmphasized:isEmphasized];
+            if ((startingFret + j) < 17) [dots addObject:dot];
+            j++;
+        }
+        
+    }
+    
+}
+
+- (void)drawTitle:(CGContextRef)ctx {
+    NSGraphicsContext *gc = [NSGraphicsContext graphicsContextWithGraphicsPort:ctx flipped:NO]; 
+    [NSGraphicsContext saveGraphicsState]; 
+    [NSGraphicsContext setCurrentContext:gc]; 
+    NSMutableDictionary *stringAttributes = [[NSMutableDictionary alloc] initWithCapacity:1];
+    NSFont *font = [NSFont fontWithName:@"Helvetica" size:10.0];
+    [stringAttributes setObject:font forKey:NSFontAttributeName];
+    NSSize size = [[self title] sizeWithAttributes:stringAttributes];
+    NSPoint p = NSMakePoint(nutOffset - size.width -10, 3.0 * stringSpacing);
+    [[self title] drawAtPoint:p withAttributes:stringAttributes];
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 - (void)drawStrokedCircle:(CGContextRef)ctx 
@@ -62,7 +134,8 @@
     CGContextBeginPath(ctx);
     CGContextAddArc(ctx, center.x, center.y, radius, 0.0, 2 * M_PI, 0);
     CGContextSetFillColorWithColor(ctx, CGColorGetConstantColor(kCGColorWhite));
-    CGContextDrawPath(ctx, kCGPathFillStroke); NSGraphicsContext *gc = [NSGraphicsContext graphicsContextWithGraphicsPort:ctx flipped:NO]; 
+    CGContextDrawPath(ctx, kCGPathFillStroke); 
+    NSGraphicsContext *gc = [NSGraphicsContext graphicsContextWithGraphicsPort:ctx flipped:NO]; 
     [NSGraphicsContext saveGraphicsState]; 
     [NSGraphicsContext setCurrentContext:gc]; 
     NSMutableDictionary *stringAttributes = [[NSMutableDictionary alloc] initWithCapacity:2];
@@ -70,15 +143,15 @@
     [stringAttributes setObject:font forKey:NSFontAttributeName];
     NSNumber *num = [NSNumber numberWithFloat: -2.5f];    
     [stringAttributes setObject:num forKey:NSKernAttributeName];
-    NSAttributedString *aString = [[NSAttributedString alloc] initWithString:label attributes:stringAttributes];
-    NSSize size = [aString size];
-    float adjust;
+    NSAttributedString *fingString = [[NSAttributedString alloc] initWithString:label attributes:stringAttributes];
+    NSSize size = [fingString size];
+    float adjust = 0.0;
     if (size.width > 8) 
         adjust  = -1.5;
     else if ([label isEqualToString:@"R"]) 
         adjust = -0.5;
     NSPoint p = NSMakePoint(center.x - 0.5 * size.width + adjust, center.y - 0.5 * size.height);
-    [aString drawAtPoint:p];
+    [fingString drawAtPoint:p];
     [NSGraphicsContext restoreGraphicsState];
 }
 
@@ -149,24 +222,25 @@
 
 - (void)drawFingerCircle:(CGContextRef)ctx {
     CGContextSaveGState(ctx);
-    CGContextSetLineWidth(ctx, 1.0);
+    CGContextSetLineWidth(ctx, 0.75);
     CGPoint center;
     for (FingerDot *d in dots) {
         center.x = nutOffset + ([d fret] - 0.5) * fretSpacing;
         center.y = stringSpacing * [d string];
         if ([d isEmphasized]) {
-            CGContextSetLineWidth(ctx, 2.0);
-            CGContextSetRGBStrokeColor(ctx, 0.7, 0.2, 0.2, 1.0);
+            CGContextSetLineWidth(ctx, 1.5);
+            //CGContextSetRGBStrokeColor(ctx, 0.7, 0.2, 0.2, 1.0);
         }
-        [self drawStrokedCircle:ctx circleCenter:center circleRadius:fretSpacing / 3.25 fingerNumber:[d label]];
-        CGContextSetRGBStrokeColor(ctx, 0.0, 0.0, 0.0, 1.0);
-        CGContextSetLineWidth(ctx, 1.0);
+        [self drawStrokedCircle:ctx circleCenter:center circleRadius:fretSpacing / 3.0 fingerNumber:[d label]];
+        //CGContextSetRGBStrokeColor(ctx, 0.0, 0.0, 0.0, 1.0);
+        CGContextSetLineWidth(ctx, 0.75);
     }
     CGContextRestoreGState(ctx);
 }
 
 - (void)drawFretboard:(CGContextRef)ctx {
     CGContextSaveGState(ctx);
+    [self drawTitle:ctx];
     [self drawHorizontalGrid:ctx];
     [self drawVericalGrid:ctx];
     [self drawFretMarkers:ctx];

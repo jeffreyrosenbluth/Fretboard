@@ -13,15 +13,26 @@
 
 @implementation AppDelegate
 @synthesize fretboardView = _fretboardView;
+@synthesize title = _title;
+@synthesize startingFret = _startingFret;
+@synthesize eString = _eString;
+@synthesize aString = _aString;
+@synthesize dString = _dString;
+@synthesize gString = _gString;
+@synthesize bString = _bString;
+@synthesize eeString = _eeString;
+@synthesize fbD;
 
 @synthesize window = _window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    fbD = [[FretboardDiagram alloc] init];
+    [fbD getUserInputs];
+    [fbD parseUserInputs];
 }
 
 - (void)exportFretboard:(NSURL *)url {
-    FretboardDiagram * fbD = [[FretboardDiagram alloc] init];
     float nutOffset = [fbD nutOffset];
     int numOfFrets = [fbD numOfFrets];
     float fretSpacing = [fbD fretSpacing];
@@ -37,6 +48,12 @@
     CGContextEndPage(pdfContext);
     CGContextRelease(pdfContext);
 
+}
+
+- (IBAction)apply:(NSButton *)sender {
+    [fbD getUserInputs];
+    [fbD parseUserInputs];
+    [[self fretboardView] setNeedsDisplay:YES];
 }
 
 - (IBAction)savePNG:(id)sender {

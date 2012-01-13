@@ -1,0 +1,328 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CEC2258A14BB6EE600B61D1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC2258914BB6EE600B61D1F /* Cocoa.framework */; };
+		CEC2259414BB6EE600B61D1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEC2259214BB6EE600B61D1F /* InfoPlist.strings */; };
+		CEC2259614BB6EE600B61D1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2259514BB6EE600B61D1F /* main.m */; };
+		CEC2259A14BB6EE600B61D1F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CEC2259814BB6EE600B61D1F /* Credits.rtf */; };
+		CEC2259D14BB6EE600B61D1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC2259C14BB6EE600B61D1F /* AppDelegate.m */; };
+		CEC225A014BB6EE600B61D1F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC2259E14BB6EE600B61D1F /* MainMenu.xib */; };
+		CEC225A914BB701B00B61D1F /* FretboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC225A814BB701B00B61D1F /* FretboardView.m */; };
+		CEC225B414BC9EF800B61D1F /* FretboardPNG.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC225B314BC9EF800B61D1F /* FretboardPNG.m */; };
+		CEC225BB14BDFBB400B61D1F /* FretboardDiagram.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC225BA14BDFBB400B61D1F /* FretboardDiagram.m */; };
+		CEC225BE14BE130E00B61D1F /* FingerDot.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC225BD14BE130E00B61D1F /* FingerDot.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CEC2258514BB6EE600B61D1F /* Fretboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fretboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC2258914BB6EE600B61D1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		CEC2258C14BB6EE600B61D1F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CEC2258D14BB6EE600B61D1F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CEC2258E14BB6EE600B61D1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CEC2259114BB6EE600B61D1F /* Fretboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fretboard-Info.plist"; sourceTree = "<group>"; };
+		CEC2259314BB6EE600B61D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEC2259514BB6EE600B61D1F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEC2259714BB6EE600B61D1F /* Fretboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fretboard-Prefix.pch"; sourceTree = "<group>"; };
+		CEC2259914BB6EE600B61D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		CEC2259B14BB6EE600B61D1F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CEC2259C14BB6EE600B61D1F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CEC2259F14BB6EE600B61D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		CEC225A714BB701B00B61D1F /* FretboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretboardView.h; sourceTree = "<group>"; };
+		CEC225A814BB701B00B61D1F /* FretboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretboardView.m; sourceTree = "<group>"; };
+		CEC225B214BC9EF800B61D1F /* FretboardPNG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretboardPNG.h; sourceTree = "<group>"; };
+		CEC225B314BC9EF800B61D1F /* FretboardPNG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretboardPNG.m; sourceTree = "<group>"; };
+		CEC225B914BDFBB400B61D1F /* FretboardDiagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretboardDiagram.h; sourceTree = "<group>"; };
+		CEC225BA14BDFBB400B61D1F /* FretboardDiagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretboardDiagram.m; sourceTree = "<group>"; };
+		CEC225BC14BE130E00B61D1F /* FingerDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerDot.h; sourceTree = "<group>"; };
+		CEC225BD14BE130E00B61D1F /* FingerDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerDot.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEC2258214BB6EE600B61D1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC2258A14BB6EE600B61D1F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEC2257A14BB6EE600B61D1F = {
+			isa = PBXGroup;
+			children = (
+				CEC2258F14BB6EE600B61D1F /* Fretboard */,
+				CEC2258814BB6EE600B61D1F /* Frameworks */,
+				CEC2258614BB6EE600B61D1F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEC2258614BB6EE600B61D1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2258514BB6EE600B61D1F /* Fretboard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEC2258814BB6EE600B61D1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2258914BB6EE600B61D1F /* Cocoa.framework */,
+				CEC2258B14BB6EE600B61D1F /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEC2258B14BB6EE600B61D1F /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2258C14BB6EE600B61D1F /* AppKit.framework */,
+				CEC2258D14BB6EE600B61D1F /* CoreData.framework */,
+				CEC2258E14BB6EE600B61D1F /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CEC2258F14BB6EE600B61D1F /* Fretboard */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2259B14BB6EE600B61D1F /* AppDelegate.h */,
+				CEC2259C14BB6EE600B61D1F /* AppDelegate.m */,
+				CEC225A714BB701B00B61D1F /* FretboardView.h */,
+				CEC225A814BB701B00B61D1F /* FretboardView.m */,
+				CEC225B214BC9EF800B61D1F /* FretboardPNG.h */,
+				CEC225B314BC9EF800B61D1F /* FretboardPNG.m */,
+				CEC225B914BDFBB400B61D1F /* FretboardDiagram.h */,
+				CEC225BA14BDFBB400B61D1F /* FretboardDiagram.m */,
+				CEC225BC14BE130E00B61D1F /* FingerDot.h */,
+				CEC225BD14BE130E00B61D1F /* FingerDot.m */,
+				CEC225A614BB6F3D00B61D1F /* Xibs */,
+				CEC2259014BB6EE600B61D1F /* Supporting Files */,
+			);
+			path = Fretboard;
+			sourceTree = "<group>";
+		};
+		CEC2259014BB6EE600B61D1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2259114BB6EE600B61D1F /* Fretboard-Info.plist */,
+				CEC2259214BB6EE600B61D1F /* InfoPlist.strings */,
+				CEC2259514BB6EE600B61D1F /* main.m */,
+				CEC2259714BB6EE600B61D1F /* Fretboard-Prefix.pch */,
+				CEC2259814BB6EE600B61D1F /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CEC225A614BB6F3D00B61D1F /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				CEC2259E14BB6EE600B61D1F /* MainMenu.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEC2258414BB6EE600B61D1F /* Fretboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC225A314BB6EE600B61D1F /* Build configuration list for PBXNativeTarget "Fretboard" */;
+			buildPhases = (
+				CEC2258114BB6EE600B61D1F /* Sources */,
+				CEC2258214BB6EE600B61D1F /* Frameworks */,
+				CEC2258314BB6EE600B61D1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fretboard;
+			productName = Fretboard;
+			productReference = CEC2258514BB6EE600B61D1F /* Fretboard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEC2257C14BB6EE600B61D1F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Applause Code";
+			};
+			buildConfigurationList = CEC2257F14BB6EE600B61D1F /* Build configuration list for PBXProject "Fretboard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CEC2257A14BB6EE600B61D1F;
+			productRefGroup = CEC2258614BB6EE600B61D1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEC2258414BB6EE600B61D1F /* Fretboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEC2258314BB6EE600B61D1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC2259414BB6EE600B61D1F /* InfoPlist.strings in Resources */,
+				CEC2259A14BB6EE600B61D1F /* Credits.rtf in Resources */,
+				CEC225A014BB6EE600B61D1F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEC2258114BB6EE600B61D1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC2259614BB6EE600B61D1F /* main.m in Sources */,
+				CEC2259D14BB6EE600B61D1F /* AppDelegate.m in Sources */,
+				CEC225A914BB701B00B61D1F /* FretboardView.m in Sources */,
+				CEC225B414BC9EF800B61D1F /* FretboardPNG.m in Sources */,
+				CEC225BB14BDFBB400B61D1F /* FretboardDiagram.m in Sources */,
+				CEC225BE14BE130E00B61D1F /* FingerDot.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CEC2259214BB6EE600B61D1F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEC2259314BB6EE600B61D1F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CEC2259814BB6EE600B61D1F /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEC2259914BB6EE600B61D1F /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		CEC2259E14BB6EE600B61D1F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEC2259F14BB6EE600B61D1F /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CEC225A114BB6EE600B61D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CEC225A214BB6EE600B61D1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CEC225A414BB6EE600B61D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Fretboard/Fretboard-Prefix.pch";
+				INFOPLIST_FILE = "Fretboard/Fretboard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CEC225A514BB6EE600B61D1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Fretboard/Fretboard-Prefix.pch";
+				INFOPLIST_FILE = "Fretboard/Fretboard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEC2257F14BB6EE600B61D1F /* Build configuration list for PBXProject "Fretboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC225A114BB6EE600B61D1F /* Debug */,
+				CEC225A214BB6EE600B61D1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC225A314BB6EE600B61D1F /* Build configuration list for PBXNativeTarget "Fretboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC225A414BB6EE600B61D1F /* Debug */,
+				CEC225A514BB6EE600B61D1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEC2257C14BB6EE600B61D1F /* Project object */;
+}

@@ -95,6 +95,11 @@
                 numLabel = [s substringWithRange:second];
                 isEmphasized = ([s length] == 3);
             }
+            else if ([[s substringToIndex:1] isEqualToString:@"+"]) {
+                flat = @"\u266F";
+                numLabel = [s substringWithRange:second];
+                isEmphasized = ([s length] == 3);
+            }
             else {
                 flat = @"";
                 numLabel = [s substringToIndex:1];
@@ -110,7 +115,6 @@
         }
         
     }
-    
 }
 
 - (void)drawTitle:(CGContextRef)ctx {
@@ -129,25 +133,41 @@
 - (void)drawStrokedCircle:(CGContextRef)ctx 
              circleCenter:(CGPoint)center 
              circleRadius:(float)radius 
-             fingerNumber:(NSString *)label 
+             fingerNumber:(NSString *)label
+              circleColor:(CGColorRef) color;
 {
+    CGContextSaveGState(ctx);
     CGContextBeginPath(ctx);
     CGContextAddArc(ctx, center.x, center.y, radius, 0.0, 2 * M_PI, 0);
-    CGContextSetFillColorWithColor(ctx, CGColorGetConstantColor(kCGColorWhite));
+    CGContextSetFillColorWithColor(ctx, color);
+    CGContextSetShadow(ctx, CGSizeMake(-1, -1), 2);
+    CGContextBeginTransparencyLayer(ctx, NULL);
     CGContextDrawPath(ctx, kCGPathFillStroke); 
+    CGContextEndTransparencyLayer(ctx);
+    CGContextRestoreGState(ctx);
     NSGraphicsContext *gc = [NSGraphicsContext graphicsContextWithGraphicsPort:ctx flipped:NO]; 
     [NSGraphicsContext saveGraphicsState]; 
     [NSGraphicsContext setCurrentContext:gc]; 
-    NSMutableDictionary *stringAttributes = [[NSMutableDictionary alloc] initWithCapacity:2];
+    NSRange range;
+    range.location = 0;
+    range.length = 1; 
+    NSMutableDictionary *stringAttributes = [[NSMutableDictionary alloc] initWithCapacity:3];
     NSFont *font = [NSFont fontWithName:@"Times-Roman" size:9.0];
     [stringAttributes setObject:font forKey:NSFontAttributeName];
-    NSNumber *num = [NSNumber numberWithFloat: -2.5f];    
+    NSNumber *num = [NSNumber numberWithFloat: -1.f];    
     [stringAttributes setObject:num forKey:NSKernAttributeName];
-    NSAttributedString *fingString = [[NSAttributedString alloc] initWithString:label attributes:stringAttributes];
+    NSFont *smallFont = [NSFont fontWithName:@"Times-Roman" size:7.0];
+    NSDictionary *smallFontAttribute = [NSDictionary dictionaryWithObject:smallFont forKey:NSFontAttributeName];
+    NSMutableAttributedString *fingString = [[NSMutableAttributedString alloc] initWithString:label attributes:stringAttributes];
+    if ([fingString length] == 2) {
+        [fingString beginEditing];
+        [fingString addAttributes:smallFontAttribute range:range];
+        [fingString endEditing];
+    }
     NSSize size = [fingString size];
     float adjust = 0.0;
     if (size.width > 8) 
-        adjust  = -1.5;
+        adjust  = -1.;
     else if ([label isEqualToString:@"R"]) 
         adjust = -0.5;
     NSPoint p = NSMakePoint(center.x - 0.5 * size.width + adjust, center.y - 0.5 * size.height);
@@ -172,6 +192,7 @@
 
 - (void)drawHorizontalGrid:(CGContextRef)ctx {
     CGContextSaveGState(ctx);
+    CGContextSetShadow(ctx, CGSizeMake(-1, -1), 1);
     CGContextBeginPath(ctx);
     CGContextSetLineWidth(ctx, 0.5);
     CGContextSetLineJoin(ctx, kCGLineJoinMiter);
@@ -187,13 +208,16 @@
 
 - (void)drawVericalGrid:(CGContextRef)ctx {
     CGContextSaveGState(ctx);
-    CGContextBeginPath(ctx);
+    CGContextBeginPath(ctx);    
+    CGColorRef black = CGColorCreateGenericRGB(0.0, 0.0, 0.0, 1.0);
+    CGContextSetStrokeColorWithColor(ctx, black);
     CGContextSetLineWidth(ctx, 3.0);
     CGContextSetLineJoin(ctx, kCGLineJoinMiter);
     CGPoint start = CGPointMake(nutOffset, stringSpacing);
     CGPoint end = CGPointMake(nutOffset, stringSpacing * numOfStrings);
     [self drawStrokedLine:ctx startPoint:start endPoint:end];
     CGContextSetLineWidth(ctx, 0.5);
+    CGContextSetStrokeColorWithColor(ctx, black);
     for(int i = 0;i < numOfFrets; i++) {
         CGContextTranslateCTM(ctx, fretSpacing, 0.0);
         [self drawStrokedLine:ctx startPoint:start endPoint:end];
@@ -224,15 +248,18 @@
     CGContextSaveGState(ctx);
     CGContextSetLineWidth(ctx, 0.75);
     CGPoint center;
+    CGColorRef blue = CGColorCreateGenericRGB(1, 1, 1, 1.0);
+    CGColorRef red = CGColorCreateGenericRGB(1, 1, 1, 1.0);
     for (FingerDot *d in dots) {
         center.x = nutOffset + ([d fret] - 0.5) * fretSpacing;
         center.y = stringSpacing * [d string];
         if ([d isEmphasized]) {
             CGContextSetLineWidth(ctx, 1.5);
-            //CGContextSetRGBStrokeColor(ctx, 0.7, 0.2, 0.2, 1.0);
+            [self drawStrokedCircle:ctx circleCenter:center circleRadius:fretSpacing / 3.0 fingerNumber:[d label] circleColor: red];
         }
-        [self drawStrokedCircle:ctx circleCenter:center circleRadius:fretSpacing / 3.0 fingerNumber:[d label]];
-        //CGContextSetRGBStrokeColor(ctx, 0.0, 0.0, 0.0, 1.0);
+        else {
+            [self drawStrokedCircle:ctx circleCenter:center circleRadius:fretSpacing / 3.0 fingerNumber:[d label] circleColor: blue];
+        }
         CGContextSetLineWidth(ctx, 0.75);
     }
     CGContextRestoreGState(ctx);

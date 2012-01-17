@@ -20,20 +20,6 @@
     return self;
 }
 
-/*
- NSSize imageSize = NSMakeSize(512, 512);
- NSImage *image = [[[NSImage alloc] initWithSize:imageSize] autorelease];
- [image lockFocus];
- //draw a line:
- [NSBezierPath strokeLineFromPoint:NSMakePoint(100, 100) toPoint:NSMakePoint(200, 200)];
- //...
- NSBitmapImageRep *imageRep = [[[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, imageSize.width, imageSize.height)] autorelease];
- NSData *pngData = [imageRep representationUsingType:NSPNGFileType properties:nil];
- [image unlockFocus];
- [pngData writeToFile:@"/path/to/your/file.png" atomically:YES];
- */
-
-
 - (void)drawVericalGridInRect:(CGRect)dataRect {
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     NSBezierPath *path = [NSBezierPath bezierPath];
